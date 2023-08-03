@@ -7,6 +7,7 @@ COPY Pipfile /app/Pipfile
 COPY Pipfile.lock /app/Pipfile.lock
 COPY model.py /app/model.py
 COPY iris_model.joblib /app/iris_model.joblib
+COPY ./data/iris.csv /app/./data/iris.csv
 
 
 # set the working directory in the container to be /app
@@ -18,4 +19,4 @@ RUN pip install pipenv
 RUN pipenv install --system --deploy --ignore-pipfile
 
 # execute the command python main.py (in the WORKDIR) to start the app
-CMD uvicorn fast:app --host 0.0.0.0 --port $PORT
+CMD uvicorn app:app --host 0.0.0.0 --port $PORT
